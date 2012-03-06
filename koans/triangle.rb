@@ -14,15 +14,25 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+
+  if a <= 0 || b <= 0 || c <= 0
+    raise TriangleError #sides must be greater than zero
+  end
+  
+  if a + b + c - ( 2 * [a,b,c].max) <=0 
+    raise TriangleError # sum of 2 sides can never by <= 1 side
+  end
+
   if a == b && b == c 
-    return :equilateral
+    :equilateral
   elsif a == b || b == c || c == a
-    return  :isosceles
+    :isosceles
   else 
-    return  :scalene
+    :scalene
   end
 end
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError < StandardError
+  
 end
